@@ -19,9 +19,7 @@ public class OpenCommand implements Command {
 
         this.filePath = Paths.get(args[1]);
         try {
-            Editor.open(filePath);
-            //this.content = Files.readAllLines(filePath);
-            //System.out.println("Successfully opened " + filePath.getFileName());
+            Editor.getInstance().open(filePath);
         } catch (IOException e) {
             System.out.println("Error opening " + filePath.getFileName() + ": " + e.getMessage());
             throw new RuntimeException("Could not open file", e);

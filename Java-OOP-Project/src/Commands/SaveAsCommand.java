@@ -17,10 +17,7 @@ public class SaveAsCommand implements Command {
         }
         Path newFilePath = Paths.get(args[1]);
         try {
-            Editor.saveAs(newFilePath);
-            //Files.write(newFilePath, content);
-            //this.filePath = newFilePath;
-            //System.out.println("Successfully saved as " + filePath.getFileName());
+            Editor.getInstance().saveAs(newFilePath);
         } catch (IOException e) {
             System.out.println("Error saving as " + newFilePath.getFileName() + ": " + e.getMessage());
             throw new RuntimeException("Could not save file", e);

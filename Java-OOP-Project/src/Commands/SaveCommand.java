@@ -14,9 +14,7 @@ public class SaveCommand implements Command {
             throw new IllegalStateException("No file is currently open");
         }
         try {
-            Editor.save();
-            //Files.write(filePath, content);
-            //System.out.println("Successfully saved " + filePath.getFileName());
+            Editor.getInstance().save();
         } catch (IOException e) {
             System.out.println("Error saving " + filePath.getFileName() + ": " + e.getMessage());
             throw new RuntimeException("Could not save file", e);

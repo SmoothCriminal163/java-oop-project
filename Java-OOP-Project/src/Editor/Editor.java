@@ -9,11 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Editor {
+    private static Editor instance;
     static public Path filePath;
     static public List<String> content = new ArrayList<>();
 
+    public static Editor getInstance() {
+        if (instance == null) {
+            instance = new Editor();
+        }
+        return instance;
+    }
+
     public static void open(Path newFilePath) throws IOException {
-        //Path newFilePath = Paths.get(filename);
         if (!Files.exists(newFilePath)) {
             throw new IOException("File does not exist");
         }
@@ -36,10 +43,26 @@ public class Editor {
         System.out.println("Successfully saved as " + filePath.getFileName());
     }
 
-    public static void close() {
+    public static void close() throws IOException {
+        if(filePath == null)
+        {
+            throw new IllegalStateException("No file is currently open");
+        }
         filePath = null;
         content.clear();
         System.out.println("Editor content cleared");
+    }
+
+    public static void exit() throws IOException{
+        //Check if there is an open file, if there is we first save it and then close it.
+        if(!content.isEmpty())
+        {
+            save();
+            close();
+        }
+        //Exit the program.
+        System.out.println("Exiting the program!");
+        System.exit(1);
     }
 
     public static List<String> getContent() {

@@ -13,14 +13,7 @@ public class Main {
             String[] inputArgs = input.split("\\s+");
 
             try {
-                if (currentCommand == null) {
-                    currentCommand = CommandFactory.createCommand(inputArgs);
-                }
-
-                if (currentCommand instanceof ExitCommand) {
-                    exitProgram = true;
-                }
-
+                currentCommand = CommandFactory.createCommand(inputArgs);
                 currentCommand.execute(inputArgs);
             }
             catch (Exception ex) {
