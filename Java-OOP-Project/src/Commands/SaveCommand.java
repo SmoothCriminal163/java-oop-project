@@ -10,9 +10,6 @@ public class SaveCommand implements Command {
     private List<String> content;
     @Override
     public void execute(String[] args) {
-        if (filePath == null) {
-            throw new IllegalStateException("No file is currently open");
-        }
         try {
             Editor.getInstance().save();
         } catch (IOException e) {

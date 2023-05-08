@@ -13,6 +13,10 @@ public class Editor {
     static public Path filePath;
     static public List<String> content = new ArrayList<>();
 
+    private Editor()
+    {
+    }
+
     public static Editor getInstance() {
         if (instance == null) {
             instance = new Editor();
